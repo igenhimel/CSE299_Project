@@ -10,7 +10,7 @@ const {
     myData,
     GooglePostController
 
-} = require('../controllers/authContoller')
+} = require('../controllers/authController')
 
 const passport =require('passport')
 
