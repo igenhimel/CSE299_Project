@@ -1,5 +1,10 @@
-
+const authRoutes = require('../routes/authRoute')
 const route = [
+
+    {
+        path:'/auth',
+        controller:authRoutes
+    },
 
     {
         path:'/',
