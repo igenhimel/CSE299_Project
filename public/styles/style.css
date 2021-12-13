@@ -13,6 +13,16 @@
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px; }
 
+#signup {
+  min-height: 600px;
+  position: relative; }
+  #signup .signup-title {
+    min-height: 600px; }
+  #signup .signup-form {
+    min-height: 600px; }
+  #signup .card {
+    width: 70%; }
+
 body {
   font-family: 'Oxygen', sans-serif;
   background-color: lightcyan; }
@@ -22,3 +32,49 @@ body {
 
 .alerts {
   margin-top: 70px !important; }
+
+.postCard {
+  box-shadow: 2px 2px 6px -1px rgba(0, 0, 0, 0.3) !important; }
+
+.postUser {
+  position: absolute;
+  top: 80px;
+  left: 96px;
+  color: black; }
+
+.fa-circle {
+  font-size: 8px;
+  color: gainsboro; }
+
+@media only screen and (max-width: 992px) {
+  .navbar .search-btn {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 100%; }
+  .navbar .search-bar {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 100%;
+    margin-bottom: 5px; }
+  .signup-title {
+    min-height: 200px !important; }
+  .signup-form {
+    min-height: 0px !important; }
+  #upload_pp {
+    width: 25% !important;
+    margin-bottom: 5px; } }
+
+@media only screen and (max-width: 576px) {
+  #signup .card {
+    width: 90% !important; }
+  #upload_pp {
+    width: 80% !important;
+    margin-bottom: 5px; }
+  .title-dis {
+    font-size: 40px; }
+  .searchwidth {
+    width: 90% !important; }
+  .comment-user {
+    font-size: 14px !important; }
+  .reply-user {
+    font-size: 14px !important; } }
