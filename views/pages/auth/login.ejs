@@ -1,0 +1,87 @@
+<%- include('../../partials/header.ejs') %>
+
+  <div id="signup">
+      <div class="container overflow-hidden">
+        <div class="row">
+
+            <div class="col-12 col-lg-4 signup-title d-flex flex-column align-items-center justify-content-center">
+              
+             <h5>Welcome To The Diary Of Dreams</h5>
+             <h6>Don't have an Account? <a class="text-primary" href="/auth/signup">Sign Up Here</a></h6>
+             <h6 class="text-center d-block d-lg-none mt-3">Or, Log in Your Account</h6>
+
+            </div>
+
+            <div class="col-12 col-lg-8 d-flex flex-column align-items-center justify-content-center signup-form" data-aos="flip-left" data-aos-duration="1000">
+
+                <div class="card">
+                         <div class="card-header bg-dark">
+                             <h5 class="text-light text-center"><%= title %> </h5>
+                         </div>
+
+                         <div class="card-body">
+                              <form action="/auth/login" method="post">
+                            
+                        
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-4">
+                                            <label for="email" class=" form-label">Email</label>
+                                        </div>
+                                        <div class="col-12 col-sm-8">
+                                     
+                                             <input type="email" placeholder="Email" id="email" class="form-control <%= ErrorPass.password || error.email ?'is-invalid':'' %> " name="email">
+
+                                             <div class="invalid-feedback">
+
+                                              
+                                                <%= ErrorPass.password && ErrorPass.password %> 
+                                                <%= error.email && error.email %>
+
+                                             </div>
+                                         
+                                        </div>
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-4">
+                                            <label for="password" class=" form-label">Password</label>
+                                        </div>
+                                        <div class="col-12 col-sm-8">
+                                     
+                                             <input type="password" placeholder="Password" id="password" class="form-control" name="password">
+                                            
+                                        </div>
+                                    </div>
+                                 </div>
+
+                               
+                               
+
+
+                                
+                                 <input type="submit" class="btn btn-outline-primary" value="Log In">
+                            
+                            
+                            </form>
+
+                           
+
+                         </div>
+                       
+                </div>
+                <br>
+                <a href="/auth/google" class="btn btn-dark" id="googleId" name="googleId"> <img src="/images/kissclipart-google-logo-clipart-google-logo-fca15cfbeaa70b32.png" alt="default" class=" img-fluid img-thumbnail" width="25px" > Sign In With Google</a>
+            </div>
+            
+        </div>
+      </div>
+  </div>
+
+<%- include('../../partials/footer.ejs') %>
+
+
+
+</body>
+</html>
