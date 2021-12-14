@@ -23,6 +23,72 @@
   #signup .card {
     width: 70%; }
 
+#explore i {
+  font-size: 20px; }
+
+.sec-nav {
+  position: sticky;
+  top: 58px;
+  z-index: 1010; }
+
+#myintro hr {
+  background-color: gray;
+  font-size: 0.5px; }
+
+#modalbody input[type='text'], #modalbody textarea {
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-radius: 0 !important;
+  background-color: transparent; }
+
+#propicPost {
+  position: relative;
+  top: 16px; }
+
+.bookmark {
+  position: absolute;
+  left: 0;
+  right: 15px;
+  text-align: end; }
+
+#comment {
+  border-radius: 50px; }
+
+#comment:focus {
+  border-radius: 0px; }
+
+#reply {
+  border-radius: 50px; }
+
+.comment-user {
+  position: absolute;
+  left: 110px; }
+
+.reply-user {
+  position: absolute;
+  left: 185px; }
+
+.comment-body {
+  margin-top: 31px;
+  margin-bottom: 1rem; }
+
+#dropProfile {
+  position: absolute;
+  right: 10px; }
+  #dropProfile button {
+    border: 0 !important; }
+  #dropProfile .btn:focus {
+    box-shadow: none !important;
+    outline: none !important; }
+  #dropProfile .dropdown-toggle::after {
+    content: none !important; }
+
+#singlepost {
+  min-width: 90%; }
+  #singlepost .thumpic {
+    height: 700px; }
+
 body {
   font-family: 'Oxygen', sans-serif;
   background-color: lightcyan; }
@@ -32,6 +98,84 @@ body {
 
 .alerts {
   margin-top: 70px !important; }
+
+#profile {
+  max-width: 1300px !important; }
+  #profile label {
+    color: white; }
+  #profile #profilepic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; }
+  #profile #upload_pp {
+    height: 44px !important;
+    padding: 7px !important;
+    border: none !important; }
+  #profile .card-bg {
+    position: relative;
+    z-index: 1; }
+  #profile .img-thumbnail {
+    background-color: white;
+    border: white;
+    animation-name: example;
+    animation-duration: 6s;
+    animation-iteration-count: infinite; }
+
+@keyframes example {
+  0% {
+    background-color: white;
+    border: white; }
+  25% {
+    background-color: yellow;
+    border: yellow; }
+  50% {
+    background-color: deepskyblue;
+    border: deepskyblue; }
+  100% {
+    background-color: lightcyan;
+    border: lightcyan; } }
+  #profile .card-bg::before {
+    content: '';
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(224, 255, 255, 0.5);
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    top: 0; }
+  #profile #about input[type='text'], #profile #about input[type='email'], #profile #about input[type='text']:focus, #profile #about textarea {
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid white !important;
+    background-color: transparent;
+    border-radius: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    color: white; }
+
+#page li a {
+  border: 0 !important; }
+
+#page .read-next a {
+  font-size: 25px;
+  font-family: 'Teko', sans-serif; }
+
+#page .item a {
+  font-size: 25px;
+  border: 2px solid white;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin-right: 5px;
+  margin-left: 5px; }
+
+#page .prev a {
+  font-size: 25px;
+  font-family: 'Teko', sans-serif; }
 
 .postCard {
   box-shadow: 2px 2px 6px -1px rgba(0, 0, 0, 0.3) !important; }
@@ -45,6 +189,29 @@ body {
 .fa-circle {
   font-size: 8px;
   color: gainsboro; }
+
+#like button {
+  border: none !important; }
+
+#like i {
+  font-size: 22px; }
+
+#profileLink i {
+  font-size: 18px;
+  color: black; }
+
+#profileLink ul {
+  margin: 0; }
+
+#profileLink li {
+  background-color: #f7f3f3; }
+
+#profileLink li:hover {
+  background-color: gainsboro; }
+
+#my-prof .button-edit {
+  top: 15px;
+  right: 0; }
 
 @media only screen and (max-width: 992px) {
   .navbar .search-btn {
