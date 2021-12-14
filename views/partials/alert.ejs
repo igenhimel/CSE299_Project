@@ -1,0 +1,23 @@
+<div class="overflow-hidden alerts fixed-top">
+   <% if (flashMessage.success) { %>
+
+    <div class="alert alert-success alert-dismissible fade show  mx-auto text-center mt-2 w-50" role="alert">
+      <strong>Yahooo!!!! </strong><%= flashMessage.success %> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    
+   <% } %>
+
+   <% if (flashMessage.fail) { %>
+
+    <div class="alert alert-danger alert-dismissible fade show  mx-auto text-center mt-2 w-50" role="alert">
+       <strong>Warning!!!! </strong><%= flashMessage.fail %> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+   </div>
+    
+   <% } %>
+</div>
