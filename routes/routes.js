@@ -1,4 +1,6 @@
 const authRoutes = require('../routes/authRoute')
+const dashboardRoutes = require('../routes/dashboardRoute')
+const uploadRoutes = require('../routes/uploadRouter')
 const route = [
 
     {
@@ -6,6 +8,16 @@ const route = [
         controller:authRoutes
     },
 
+    {
+        path:'/dashboard',
+        controller:dashboardRoutes
+
+    },
+    {
+        path:'/uploads',
+        controller:uploadRoutes
+
+    },
     {
         path:'/',
         controller:(req,res)=>{
