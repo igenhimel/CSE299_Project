@@ -1,0 +1,84 @@
+<%- include('../../partials/header.ejs') %>
+
+<div class="bg-dark">
+    <div class="container">
+          <div class="position-relative" id="my-prof">
+            <div class="text-center">
+                <img src="<%= profile.profilePic %> " alt="profile_pic" class=" img-fluid img-thumbnail rounded-circle mt-4 mb-3">
+            </div>
+            <div class=" position-absolute button-edit">
+
+                <a href="/dashboard/edit-profile" class="btn btn-outline-light">Edit Profile</a>
+
+            </div>
+            <div class="text-center">
+
+                <h2 class="display-4 text-light mb-0 p-3"><%= profile.name %> </h2>
+
+            </div>
+          </div>
+      
+        </div>
+     
+    </div>
+
+    <div class="bg-light sec-nav" id="profileLink">
+        <div class="container">
+
+            <ul class=" list-unstyled list-inline text-center p-3">
+                <li class=" list-inline-item p-3  rounded" data-toggle="tooltip" data-placement="top" title="Add New Post"><a href="/posts/createPost" class=" text-decoration-none text-black-50"><i class="far fa-plus-square"></i></a></li>
+
+                <li class=" list-inline-item p-3  rounded" data-toggle="tooltip" data-placement="top" title="Bookmarks"><a href="/dashboard/bookmarks" class=" text-decoration-none text-black-50"><i class="fas fa-bookmark"></i></a></li>
+
+                <li class=" list-inline-item p-3  rounded" data-toggle="tooltip" data-placement="top" title="Change Password"><a href="" class=" text-decoration-none text-black-50"><i class="fas fa-key"></i></a></li>
+            </ul>
+
+        </div>
+    </div>
+
+ 
+  
+    <div class="col-12 col-sm-5 offset-sm-1" id="myintro">
+
+        <h2 class="text-center p-4">About Yourself</h2>
+
+        <div class="card mt-4 bg-dark text-white">
+           <div class="card-body">
+               <h4>Intro</h4>
+
+               <small>Title</small>
+               <p><%=profile.title%></p>
+               <hr>
+               <small>Short Biography</small>
+               <p class=" text-justify"><%=profile.bio%></p>
+               <hr>
+              <div>
+                <small>Links:</small>
+              </div>
+
+               <a class="d-block text-success" href="<%=profile.links.facebook%>">Facebook</a>
+               <a class=" d-block text-success">Twitter<%=profile.links.twitter?profile.links.twitter:""%></a>
+               <a class="d-block text-success">Website: <%=profile.links.website?profile.links.website:""%></a>
+           </div>
+        </div>
+
+    </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+<%- include('../../partials/footer.ejs') %> 
+
+<script>
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+</script>
+
+</body>
+</html>
