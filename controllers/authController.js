@@ -16,13 +16,16 @@ exports.myData = (req,res,next)=>{
   })
 }
 
+/**
+ * API method for viewing sign up page
+ * @param {object} req - request object of the signUpGetController
+ * @param {object} res - response object of the signUpGetController
+ * @param {object} next - next object of the signUpGetControllert that passes next API method 
+ */
+exports.signUpGetController = (req,res,next)=>{
 
-exports.SignUpGetController = (req,res,next)=>{
- 
- 
     res.render('pages/auth/signup',{
-      
-      title:'Sign Up To Diary of Dreams',
+      title:'Create Your Account',
       path:'signpath',
       error:{},
       value:{},
@@ -32,18 +35,22 @@ exports.SignUpGetController = (req,res,next)=>{
 
 }
 
+/**
+ * API method for register new user
+ * @param {object} req - request object of the signUpPostController
+ * @param {object} res - response object of the signUpPostController
+ * @param {object} next - next object of the signUpPostControllert that passes next API method 
+ */
 
-
-exports.SignUpPostController = async (req,res,next)=>{
-
+exports.signUpPostController = async (req,res,next)=>{
 
     let {username,email,password,cpassword} =req.body
-    
     let errors = validationResult(req).formatWith(errorFormatter)
     console.log(errors.mapped())
+
     if(!errors.isEmpty()){
      req.flash('fail','Please Check Your Form')
-     
+
      return   res.render('pages/auth/signup',{
        
       title:'Sign Up To Diary of Dreams',
