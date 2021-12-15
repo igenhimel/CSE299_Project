@@ -21,7 +21,16 @@
   #signup .signup-form {
     min-height: 600px; }
   #signup .card {
-    width: 70%; }
+    width: 70%;
+    bottom: 15px; }
+  #signup .card-header {
+    background-color: #0C1023; }
+  #signup input[type='text'], #signup input[type='email'], #signup input[type='password'] {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px;
+    border-color: #fffff; }
 
 #explore i {
   font-size: 20px; }
@@ -91,7 +100,10 @@
 
 body {
   font-family: 'Oxygen', sans-serif;
-  background-color: lightcyan; }
+  background-image: url("/images/rm218batch4-ning-34.jpg");
+  background-position: left;
+  background-repeat: inherit;
+  background-size: inherit; }
 
 .bg {
   background-color: #0C1023; }
