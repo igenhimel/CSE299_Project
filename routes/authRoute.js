@@ -2,8 +2,8 @@
 const authRoute = require('express').Router()
 const {
 
-    SignUpGetController,
-    SignUpPostController,
+    signUpGetController,
+    signUpPostController,
     LoginGetController,
     LoginPostController,
     LogoutController,
@@ -25,8 +25,8 @@ authRoute.get('/google/callback',passport.authenticate('google',{failureRedirect
 
 authRoute.post('/mydata',myData)
 
-authRoute.get('/signup',isUnAuthenticated,SignUpGetController)
-authRoute.post('/signup',isUnAuthenticated,signupValidator,SignUpPostController)
+authRoute.get('/signup',isUnAuthenticated,signUpGetController)
+authRoute.post('/signup',isUnAuthenticated,signupValidator,signUpPostController)
 
 
 authRoute.get('/login',isUnAuthenticated,LoginGetController)
