@@ -7,7 +7,7 @@ let myCom = document.getElementById('myCom')
 
 
 username.addEventListener('keydown',function(e){
-    axios.post('/auth/mydata')
+    axios.post('/auth/realTimeValidation')
 .then(({data})=>{
 
     let isValid = false
@@ -51,7 +51,7 @@ username.addEventListener('keydown',function(e){
 let email = document.getElementById('email')
 
 email.addEventListener('keydown',function(e){
-    axios.post('/auth/mydata')
+    axios.post('/auth/realTimeValidation')
 .then(({data})=>{
 
     let isEmail = false
