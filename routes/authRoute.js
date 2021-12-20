@@ -4,11 +4,11 @@ const {
 
     signUpGetController,
     signUpPostController,
-    LoginGetController,
-    LoginPostController,
-    LogoutController,
-    myData,
-    GooglePostController
+    loginGetController,
+    loginPostController,
+    logoutController,
+    realTimeValidation,
+    googlePostController
 
 } = require('../controllers/authController')
 
@@ -21,19 +21,19 @@ const {isUnAuthenticated} = require('../middleware/authMiddleware')
 
 
 authRoute.get('/google',passport.authenticate('google',{scope:['profile','email']}))
-authRoute.get('/google/callback',passport.authenticate('google',{failureRedirect:'/'}),GooglePostController)
+authRoute.get('/google/callback',passport.authenticate('google',{failureRedirect:'/'}),googlePostController)
 
-authRoute.post('/mydata',myData)
+authRoute.post('/realTimeValidation',realTimeValidation)
 
 authRoute.get('/signup',isUnAuthenticated,signUpGetController)
 authRoute.post('/signup',isUnAuthenticated,signupValidator,signUpPostController)
 
 
-authRoute.get('/login',isUnAuthenticated,LoginGetController)
-authRoute.post('/login',isUnAuthenticated,loginvalidator,LoginPostController)
+authRoute.get('/login',isUnAuthenticated,loginGetController)
+authRoute.post('/login',isUnAuthenticated,loginvalidator,loginPostController)
 
 
-authRoute.get('/logout',LogoutController)
+authRoute.get('/logout',logoutController)
 
 
 module.exports=authRoute
