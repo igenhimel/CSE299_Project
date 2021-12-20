@@ -14,7 +14,11 @@ const route = [
         controller:dashboardRoutes
 
     },
-    
+    {
+        path:'/uploads',
+        controller:uploadRoutes
+
+    },
     {
         path:'/posts',
         controller:postRoute
