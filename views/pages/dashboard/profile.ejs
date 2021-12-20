@@ -31,13 +31,80 @@
                 <li class=" list-inline-item p-3  rounded" data-toggle="tooltip" data-placement="top" title="Bookmarks"><a href="/dashboard/bookmarks" class=" text-decoration-none text-black-50"><i class="fas fa-bookmark"></i></a></li>
 
                 <li class=" list-inline-item p-3  rounded" data-toggle="tooltip" data-placement="top" title="Change Password"><a href="" class=" text-decoration-none text-black-50"><i class="fas fa-key"></i></a></li>
+
+                <li class=" list-inline-item p-3  rounded" data-toggle="tooltip" data-placement="top" title="Notification"><a href="" class=" text-decoration-none text-black-50"><i class="fas fa-bell"></i></a></li>
             </ul>
 
         </div>
     </div>
 
  
-  
+    <div class="container">
+
+        <% if (posts.length==0) { %>
+
+            <div class="card mt-3">
+
+                <div class="card-body">
+                    <h1 class="lead font-weight-bold text-warning text-center">You Don't Have Any Post Yet</h1>
+                   <div class="text-center">
+                    <strong>Create New Post! <a class=" text-decoration-none text-success" href="/posts/createPost">Here</a></strong>
+                   </div>
+                </div>
+
+            </div>
+         
+        <% } %>
+    </div>
+
+    <div class="bg-white">
+        <div class="container">
+      <div class="row">
+    
+ <div class="col-12 col-sm-6">         
+        <% if (posts.length>0) { %>
+            <h2 class="text-center p-4">Your Recent Posts</h2>
+            <div class="row m-1 m-sm-0">
+            <% for(let post of posts.reverse()){ %>
+                
+                <div class="d-sm-flex flex-sm-column">
+                   
+                        <div class="card mt-3 mb-3 rounded postCard">
+                            <div class="card-body">
+
+                                <div class="btn-group" id="dropProfile">
+                                    <button type="button" class="dropdown-toggle btn" data-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                      <a href="/posts/edit/<%= post._id %>" class="d-block text-decoration-none ml-2 mb-2">Edit</a>
+                                      <a href="/posts/delete/<%= post._id %> "class="d-block text-decoration-none ml-2 mb-2">Delete</a>
+                                    </div>
+                                  </div>
+
+                                <img src="<%= user.profilePic %> " alt="profile_pic" class=" img-fluid img-thumbnail rounded-circle mt-4 mb-3" width="70px">
+                                <span class="font-weight-bold text-secondary"><%= profile.name %> </span>
+                                <div class="postUser">
+                                    @<%= user.username %> 
+                                </div>
+                    
+                                
+                                <h4 class="font-weight-bolder card-title text-muted"><%= post.title %> </h4>
+                                
+                                <p class="text-black-50"><%= truncate(post.body) %> </p>
+                                <% if (post.thumbnail) { %>
+                                 <img src="<%= post.thumbnail %> " alt="" class=" card-img-top">
+                                <% } %>
+       
+                            </div>
+                        </div>  
+                    
+                 </div> 
+                            
+                <% } %> 
+        <% } %>
+    </div>
+    </div>
     <div class="col-12 col-sm-5 offset-sm-1" id="myintro">
 
         <h2 class="text-center p-4">About Yourself</h2>
