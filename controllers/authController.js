@@ -9,23 +9,20 @@ const Profile = require('../models/Profile')
 
 
 
-exports.myData = (req,res,next)=>{
+exports.realTimeValidation = (req,res,next)=>{
   User.find()
   .then(data=>{
     res.status(200).json(data)
   })
 }
 
-/**
- * API method for viewing sign up page
- * @param {object} req - request object of the signUpGetController
- * @param {object} res - response object of the signUpGetController
- * @param {object} next - next object of the signUpGetControllert that passes next API method 
- */
-exports.signUpGetController = (req,res,next)=>{
 
+exports.signUpGetController = (req,res,next)=>{
+ 
+ 
     res.render('pages/auth/signup',{
-      title:'Create Your Account',
+      
+      title:'Sign Up To Diary of Dreams',
       path:'signpath',
       error:{},
       value:{},
@@ -35,22 +32,18 @@ exports.signUpGetController = (req,res,next)=>{
 
 }
 
-/**
- * API method for register new user
- * @param {object} req - request object of the signUpPostController
- * @param {object} res - response object of the signUpPostController
- * @param {object} next - next object of the signUpPostControllert that passes next API method 
- */
+
 
 exports.signUpPostController = async (req,res,next)=>{
 
+
     let {username,email,password,cpassword} =req.body
+    
     let errors = validationResult(req).formatWith(errorFormatter)
     console.log(errors.mapped())
-
     if(!errors.isEmpty()){
      req.flash('fail','Please Check Your Form')
-
+     
      return   res.render('pages/auth/signup',{
        
       title:'Sign Up To Diary of Dreams',
@@ -94,7 +87,7 @@ exports.signUpPostController = async (req,res,next)=>{
 
 
 
-exports.LoginGetController = (req,res,next)=>{
+exports.loginGetController = (req,res,next)=>{
 
   res.render('pages/auth/login',{
     title:'Log In To Your Account',
@@ -108,7 +101,7 @@ exports.LoginGetController = (req,res,next)=>{
 
 }
 
-exports.LoginPostController = async (req,res,next)=>{
+exports.loginPostController = async (req,res,next)=>{
 
     let {email,password} = req.body
     let errors = validationResult(req).formatWith(errorFormatter)
@@ -169,7 +162,7 @@ exports.LoginPostController = async (req,res,next)=>{
     
 }
 
-exports.GooglePostController = async (req,res,next)=>{
+exports.googlePostController = async (req,res,next)=>{
 
   try{
 
@@ -203,7 +196,7 @@ exports.GooglePostController = async (req,res,next)=>{
 
 
 
-exports.LogoutController = (req,res,next)=>{
+exports.logoutController = (req,res,next)=>{
   
     req.session.destroy(err=>{
 
