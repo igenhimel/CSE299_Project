@@ -188,14 +188,6 @@ exports.googlePostController = async (req,res,next)=>{
      
 }
 
-
-
-    
-
-
-
-
-
 exports.logoutController = (req,res,next)=>{
   
     req.session.destroy(err=>{
@@ -205,9 +197,126 @@ exports.logoutController = (req,res,next)=>{
         return next(err)
       }
       else{
-        res.redirect('/auth/login')
+        res.redirect('/explore/homepage')
       }
 
     })
     
+}
+
+
+exports.verifyEmailGet =(req,res,next)=>{
+ 
+  res.render('pages/auth/verifyUser',{
+    title:'Forgot Password',
+    path:{},
+    flashMessage:Flash.getMessage(req)
+  })
+
+}
+
+exports.forgotPasswordGet =async (req,res,next)=>{
+ 
+  let{email}=req.body
+
+  try{
+    let user = await User.findOne({
+      email:email
+    })
+
+    console.log(user)
+  
+    if(user){
+      req.flash('success','You are a verified User!')
+      res.render('pages/auth/forgotPass',{
+      title:'Forgot Password',
+      path:{},
+      flashMessage:Flash.getMessage(req),
+      user
+      })
+  
+    }
+    else{
+      req.flash('fail','You are not a verified User!')
+      res.redirect('/auth/verifyEmail')
+    }
+
+  }
+  catch(e){
+
+    next(e)
+
+  }
+  
+
+}
+
+exports.forgotPasswordGet =async (req,res,next)=>{
+ 
+  let{email}=req.body
+
+  try{
+    let user = await User.findOne({
+      email:email
+    })
+
+    console.log(user)
+  
+    if(user){
+      req.flash('success','You are a verified User!')
+      res.render('pages/auth/forgotPass',{
+      title:'Forgot Password',
+      path:{},
+      flashMessage:Flash.getMessage(req),
+      user
+      })
+  
+    }
+    else{
+      req.flash('fail','You are not a verified User!')
+      res.redirect('/auth/verifyEmail')
+    }
+
+  }
+  catch(e){
+
+    next(e)
+
+  }
+  
+
+}
+
+exports.forgotPasswordPost = async(req,res,next)=>{
+  let {password,cpassword,getEmail} =req.body
+
+    
+ if(password!=cpassword){
+
+  req.flash('fail','Please verify Email Again')
+  return res.redirect('/auth/verifyEmail')
+ }
+
+try{
+
+  let hashPassword = await bcrypt.hash(password,11)
+
+
+  await User.findOneAndUpdate({
+    email:getEmail
+
+  },{
+    $set:{'password':hashPassword}
+  })
+  req.flash('success','Please Login To Your Account')
+  res.redirect('/auth/login')
+
+
+}
+
+catch(e){
+    console.log(e)
+    next(e)
+}
+
 }
