@@ -221,6 +221,28 @@ body {
 #profileLink li:hover {
   background-color: gainsboro; }
 
+#homepage {
+  background-color: white;
+  width: 100%;
+  height: 45rem;
+  position: absolute; }
+  #homepage .diary {
+    position: relative;
+    top: 210px;
+    left: 15px; }
+  #homepage .titleHome {
+    position: relative;
+    top: 45px;
+    left: 15px; }
+  #homepage .titleHome_2 {
+    position: relative;
+    top: 50px;
+    left: 20px; }
+  #homepage .item img {
+    width: 500px; }
+  #homepage p {
+    font-size: 30px; }
+
 #my-prof .button-edit {
   top: 15px;
   right: 0; }

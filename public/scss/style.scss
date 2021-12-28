@@ -335,12 +335,52 @@ background-color: #0C1023;
     }
 }
 
+
+#homepage{
+
+    background-color:white;
+    width: 100%;
+    height: 45rem;
+    position: absolute;
+   
+    .diary{
+      
+        position: relative;
+        top:210px;
+        left: 15px;
+    }
+
+    .titleHome{
+        position: relative;
+        top:45px;
+        left: 15px;
+    }
+    .titleHome_2{
+        position: relative;
+        top:50px;
+        left: 20px;
+    }
+
+    .item img{
+        width: 500px;
+    }
+
+
+
+    p{
+        font-size:30px,
+    }
+
+}
+
+
 #my-prof{
     .button-edit{
         top:15px;
         right: 0;
     }
 }
+
 
 
 @media only screen and (max-width: 992px) {
