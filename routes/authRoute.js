@@ -8,7 +8,10 @@ const {
     loginPostController,
     logoutController,
     realTimeValidation,
-    googlePostController
+    googlePostController,
+    verifyEmailGet,
+    forgotPasswordGet,
+    forgotPasswordPost
 
 } = require('../controllers/authController')
 
@@ -34,6 +37,12 @@ authRoute.post('/login',isUnAuthenticated,loginvalidator,loginPostController)
 
 
 authRoute.get('/logout',logoutController)
+
+authRoute.get('/verifyEmail',verifyEmailGet)
+authRoute.post('/verifyEmail',forgotPasswordGet)
+
+authRoute.post('/forgotPass',forgotPasswordPost)
+
 
 
 module.exports=authRoute
