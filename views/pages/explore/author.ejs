@@ -1,0 +1,118 @@
+<%- include('../../partials/header.ejs') %>
+
+<div class="bg-dark">
+    <div class="container">
+          <div class="position-relative" id="my-prof">
+            <div class="text-center">
+                <img src="<%= author.profile.profilePic %> " alt="profile_pic" class=" img-fluid img-thumbnail rounded-circle mt-4 mb-3">
+            </div>
+            <div class=" position-absolute button-edit">
+
+                <% if (user) { %>
+
+                           
+                    <span class="follow" data-post="<%= author.profile._id %> ">
+                  
+                      <% if (follows.includes(author.profile._id)) { %>
+                 
+                       <btn class="btn btn-outline-success">Following</btn>
+                    
+                      <% } else{%>
+                        <btn class="btn btn-light">Follow</btn>
+                      
+                       <% } %> 
+                     </span>
+                  
+                    
+                   <% } %>
+
+            </div>
+            <div class="text-center">
+
+                <h2 class="display-4 text-light mb-0 p-3"><%= author.profile.name %> </h2>
+
+            </div>
+          </div>
+      
+        </div>
+     
+    </div>
+
+
+
+
+    <div class="bg-white">
+        <div class="container">
+      <div class="row">
+    
+        <div class="col-12 col-sm-6">         
+            <% if (posts.length>0) { %>
+                <h2 class="text-center p-4">Recent Posts</h2>
+                <div class="row m-1 m-sm-0">
+                <% for(let post of posts.reverse()){ %>
+                    
+                    <div class="d-sm-flex flex-sm-column">
+                       
+                            <div class="card mt-3 mb-3 rounded postCard">
+                                <div class="card-body">
+    
+                                 
+    
+                                    <img src="<%= author.profile.profilePic %> " alt="profile_pic" class=" img-fluid img-thumbnail rounded-circle mt-4 mb-3" width="70px">
+                                    <span class="font-weight-bold text-secondary"><%= author.profile.name %> </span>
+                                   
+                                    
+                                    <a href="/explore/<%= post._id %> " class=" text-decoration-none">
+                                        <h4 class="font-weight-bolder card-title text-muted"><%= post.title %> </h4>
+                                        <p class="text-dark"><%= truncate(post.body) %> </p>
+                                       
+                                        <% if (post.thumbnail) { %>
+                                            <img src="<%= post.thumbnail %> " alt="" class=" card-img-top">
+                                           <% } %>
+                                       </a>
+                                </div>
+                            </div>  
+                        
+                     </div> 
+                                
+                    <% } %> 
+            <% } %>
+        </div>
+        </div>
+
+    <div class="col-12 col-sm-5 offset-sm-1" id="myintro">
+
+        <h2 class="text-center p-4">About</h2>
+
+        <div class="card mt-4 bg-dark text-white">
+           <div class="card-body">
+               <h4>Intro</h4>
+
+               <small>Title</small>
+               <p><%=author.profile.title%></p>
+               <hr>
+               <small>Short Biography</small>
+               <p class=" text-justify"><%=author.profile.bio%></p>
+               <hr>
+              <div>
+                <small>Links:</small>
+              </div>
+
+               <a class="d-block text-success" href="<%=author.profile.links.facebook%>">Facebook</a>
+               <a class=" d-block text-success">Twitter<%=author.profile.links.twitter?author.profile.links.twitter:""%></a>
+               <a class="d-block text-success">Website: <%=author.profile.links.website?author.profile.links.website:""%></a>
+           </div>
+        </div>
+
+    </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+<%- include('../../partials/footer.ejs') %> 
+<script src="/scripts/follow.js"></script>
+</body>
+</html>

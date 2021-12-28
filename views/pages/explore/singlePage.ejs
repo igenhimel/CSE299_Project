@@ -1,0 +1,221 @@
+<%- include('../../partials/header.ejs') %>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+
+
+
+
+
+<section class="singlepost">
+  <div class="container" id="singlepost">
+
+    <div class="row <%= post.thumbnail?'':'d-flex flex-row justify-content-center align-items-center' %>">
+      <% if (post.thumbnail) { %>
+
+      <div class="thumpic col-5 d-none d-lg-flex flex-row justify-content-center align-items-center">
+
+
+        <img src="<%= post.thumbnail %> " alt="" class="img-fluid img-thumbnail">
+
+
+
+      </div>
+
+      <% } %>
+
+      <div class="col-12 col-lg-7 mt-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+
+
+            <% if (user) { %>
+
+
+            <span class="bookmark" data-post="<%= post._id %> ">
+
+              <% if (bookmarks.includes(post._id)) { %>
+
+              <i class="fas fa-bookmark text-primary"></i>
+
+              <% } else{%>
+              <i class="far fa-bookmark"></i>
+
+              <% } %>
+            </span>
+
+
+            <% } %>
+
+            <img src="<%= post.author.profilePic %> " alt="profile_pic"
+              class=" img-fluid img-thumbnail rounded-circle mt-4 mb-3 imguser" width="70px">
+            <span class="font-weight-bold text-secondary"><%= post.profile.name %> </span>
+            <div class="postUser">
+              <small><%= moment(post.createdAt) %> <i class="fas fa-circle"></i> <%= post.readTime %> </small>
+
+            </div>
+
+
+            <h4 class="font-weight-bolder card-title text-muted"><%= post.title %> </h4>
+            <div class="text-dark text-justify" id="postbody">
+              <%- post.body %>
+            </div>
+
+          </div>
+          <% if (!isLoggedIn) { %>
+
+
+          <div class="card-footer bg-white" id="like">
+
+            <div class="row">
+              <div class="col">
+                <button class="btn w-100  disabled"><i class="far fa-thumbs-up"></i>
+                  <%= post.likes.length %>
+                </button>
+              </div>
+              <div class="col">
+                <button class="btn w-100  disabled"><i class="far fa-thumbs-down"></i>
+                  <%= post.dislikes.length %>
+                </button>
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-center">
+
+              <p class="text-muted">To Like And Comment Plaese <a href="/auth/login">Login</a></p>
+
+            </div>
+
+          </div>
+
+
+
+
+          <% }else{ %>
+
+          <div class="card-footer bg-white" id="like">
+
+
+
+            <div class="row">
+              <div class="col">
+                <button class="btn w-100 likebtn" id="likebtn<%=post._id%> " data-post="<%= post._id %> "><i class="fas fa-thumbs-up <% if (post.likes.includes(user._id)) { %>
+                                text-primary
+                        <% } %> "></i>
+                  <%= post.likes.length %>
+                </button>
+              </div>
+              <div class="col">
+                <button class="btn w-100 dislikebtn" id="dislikebtn<%=post._id%> " data-post="<%= post._id %> "><i
+                    class="fas fa-thumbs-down <% if (post.dislikes.includes(user._id)) { %>
+                            text-primary
+                    <% } %> "></i>
+                  <%= post.dislikes.length %>
+                </button>
+              </div>
+            </div>
+
+           <% if (user.profile) { %>
+            <div class="my-3" id="comments">
+
+              <label for="comment" class=" font-weight-bold">Leave a comment</label>
+              <textarea name="comment" class="form-control w-75" id="comment" rows="2"
+                placeholder="Press Enter To Submit" data-post="<%= post._id %> "></textarea>
+
+            </div>
+           <% }else{ %>
+            
+            
+              
+              
+               <div class="my-3" id="comments">
+
+<div for="comment" class=" font-weight-bold text-center">You Don't Have A profile!!Please Create A profile First Then comment</div>
+              
+             <% } %> 
+
+            <hr>
+
+            <div class="mt-3" id="comment-holder">
+
+              <% if (post.comments.length==0) { %>
+
+              <p class="text-center text-muted" id="no-comment">No Comments</p>
+
+              <% } else{ %>
+
+              <% for(comment of post.comments.reverse()){ %>
+
+              <div class="media border-bottom">
+                <img src="<%= comment.user.profilePic %> " alt=""
+                  class="img-fluid img-thumbnail rounded-circle mx-3 mt-2" width="60px">
+                <span class="comment-user text-muted mt-2">
+                  <%= comment.user.profile.name %> | <%= moment(comment.createdAt) %>  
+                </span>  
+
+                <div class="media-body">
+                  <p class="comment-body mt-5"><%= comment.body %></p>
+                  <div name="replies">
+                    <% if(comment.replies.length>0){ %>
+
+                    <% for(let reply of comment.replies){ %>
+                    <div class="media mt-3">
+                      <img src="<%= reply.user.profilePic %> " alt="" class="img-fluid img-thumbnail rounded-circle align-self-start mr-3"
+                        width="60px">
+                        <span class="reply-user text-muted mt-2">
+                          <%= reply.user.profile.name %>
+                        </span>  
+                      <div class="media-body">
+                        <p class="comment-body mt-4"><%= reply.body %> </p>
+
+                      </div>
+                    </div>
+                    <% } %>
+
+                    <% } %>
+
+                  </div>
+                  <% if (user.profile) { %>
+                    <div class="my-3">
+                      <textarea name="reply" id="reply" class="form-control w-50" placeholder="Replies..."
+                      data-comment="<%= comment._id %> " cols="30" rows="1"></textarea>
+                      
+                     </div>
+                  <% } %>
+                </div>
+
+              </div>
+
+
+              <% } %>
+
+
+              <% } %>
+              <% } %>
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+</section>
+
+
+
+
+
+
+
+<%- include('../../partials/footer.ejs') %>
+<script src="/scripts/bookmark.js"></script>
+<script src="/scripts/likeDislike.js"></script>
+<script src="/scripts/comment.js"></script>
+
+<script>
+
+$('#postbody img').addClass("img-fluid")
+
+</script>
+</body>
+</head>

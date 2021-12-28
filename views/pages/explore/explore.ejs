@@ -1,0 +1,188 @@
+<%- include('../../partials/header.ejs') %>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+<nav class="navbar navbar-dark navbar-expand-lg" id="explore">
+    <ul class="navbar-nav mx-auto">
+        <li class=" nav-item"><a class="nav-link text-dark" href="/explore?filter=recent"><i class="fas fa-newspaper <%= filter=='recent'?'text-primary':'text-dark' %> "></i> Most Recent</a></li>
+        <li class=" nav-item"><a class="nav-link text-dark" href="/explore?filter=week"><i class="fas fa-calendar-week <%= filter=='week'?'text-primary':'text-dark' %>"></i> Week</a></li>
+        <li class=" nav-item"><a class="nav-link text-dark" href="/explore?filter=month"><i class="far fa-calendar-alt <%= filter=='month'?'text-primary':'text-dark' %>"></i> Month</a></li>
+        <li class=" nav-item"><a class="nav-link text-dark" href="/explore?filter=all"><i class="fas fa-globe-asia <%= filter=='all'?'text-primary':'text-dark' %>"></i> All</a></li>
+    </ul>
+</nav>
+
+
+<div class="container">
+
+
+    <% if (posts.length==0) { %>
+
+        <div class="card mt-3">
+
+            <div class="card-body">
+                <h1 class="lead font-weight-bold text-warning text-center">No Post Available</h1>
+               <div class="text-center">
+               </div>
+            </div>
+
+        </div>
+     
+    <% } %>
+</div>
+
+<br>
+<br>
+
+<section class="bg-white">
+    <div class="container">
+        
+       
+    <% if (posts.length>0) { %>
+        <h2 class="text-center p-4">Recent Posts</h2>
+        
+        <% for(let post of posts){ %>
+            
+            <div class="row d-lg-flex justify-content-lg-center align-items-lg-center">
+                <div class="col col-lg-7">
+                    <div class="card mb-3 rounded postCard">
+
+                    
+                        
+                        <div class="card-body">
+                            
+                          
+                          <% if (user) { %>
+
+                           
+                            <span class="bookmark" data-post="<%= post._id %> ">
+                          
+                              <% if (bookmarks.includes(post._id)) { %>
+                         
+                               <i class="fas fa-bookmark text-primary"></i>
+                            
+                              <% } else{%>
+                               <i class="far fa-bookmark"></i>
+                              
+                               <% } %> 
+                             </span>
+                          
+                            
+                           <% } %>
+
+                            <img src="<%= post.author.profilePic %> " alt="profile_pic" class=" img-fluid img-thumbnail rounded-circle mt-4 mb-3 imguser" width="70px">
+                            <span class="font-weight-bold text-secondary"><%if(user){%>
+                              <a href="/author/<%=post.author._id %>"><%= post.profile.name %> </a>
+                              <%}else{%>
+                                <%=post.profile.name %>
+                                <%}%>
+                                  
+                            </span>
+                            <div class="postUser">
+                                <small><%= moment(post.createdAt) %> <i class="fas fa-circle"></i> <%= post.readTime %> </small> 
+                        
+                            </div>
+
+                            <a href="/explore/<%= post._id %> " class=" text-decoration-none">
+                            <h4 class="font-weight-bolder card-title text-muted"><%= post.title %> </h4>
+                            <p class="text-dark"><%= truncate(post.body) %> </p>
+                           
+                            <% if (post.thumbnail) { %>
+                                <img src="<%= post.thumbnail %> " alt="" class=" card-img-top">
+                               <% } %>
+                           </a>
+                        </div>
+                       
+                        <% if (isLoggedIn) { %>
+
+                            <div class="card-footer bg-white" id="like">
+
+                              <div class="row">
+                                <div class="col">
+                                  <button class="btn w-100 likebtn"  id="likebtn<%=post._id%> "  data-post="<%= post._id %> "><i class="fas fa-thumbs-up <% if (post.likes.includes(user._id)) { %>
+                                          text-primary
+                                  <% } %> "></i>
+                                      <%= post.likes.length %>
+                                  </button>
+                                </div>
+                                <div class="col">
+                                  <button class="btn w-100 dislikebtn" id="dislikebtn<%=post._id%> "  data-post="<%= post._id %> "><i class="fas fa-thumbs-down <% if (post.dislikes.includes(user._id)) { %>
+                                      text-primary
+                              <% } %> "></i>
+                                      <%= post.dislikes.length %>
+                                  </button>
+                                </div>
+                            </div>
+
+                            </div>
+                           
+                          <% }else{ %>
+
+                            <div class="card-footer bg-white" id="like">
+
+                              <div class="row">
+                                  <div class="col">
+                                    <button class="btn w-100  disabled"><i class="far fa-thumbs-up"></i><%= post.likes.length %></button>
+                                  </div>
+                                  <div class="col">
+                                    <button class="btn w-100  disabled"><i class="far fa-thumbs-down"></i><%= post.dislikes.length %></button>
+                                  </div>
+                              </div>
+                              <div class="d-flex flex-row justify-content-center">
+
+                                <p class="text-muted">To Like And Comment Plaese <a href="/auth/login">Login</a></p>
+
+                              </div>
+
+                            </div>
+
+                            <% } %> 
+
+                    </div>
+
+                </div>
+            </div>
+            
+
+          
+            
+            
+            <% } %> 
+    <% } %>
+</div>
+
+<nav class="py-3" id='page'>
+    <ul class="pagination justify-content-center">
+
+      <li class="page-item prev <%= currentPage==1?'disabled':'' %> ">
+        <a class="page-link <%= currentPage==1?'text-muted':'text-dark' %> " href="/explore?<%= `filter=${filter}&page=${currentPage-1}` %> ">Previous</a>
+      </li>
+
+      <% for(let i=1;i<=totalPage;i++){ %> 
+
+        <li class="page-item item <%= currentPage==i?'active':'' %>  "><a class=" page-link" href="/explore?<%=`filter=${filter}&page=${i}`%>"><%= i %>
+        
+        </a></li>
+
+
+        <% } %> 
+
+      <li class="page-item read-next <%= currentPage==totalPage?'disabled':'' %> ">
+        <a class="page-link <%= currentPage==totalPage?'text-muted':'text-dark' %>" href="/explore?<%= `filter=${filter}&page=${currentPage+1}`%>">Read Next</a>
+      </li>
+
+    </ul>
+  </nav>
+
+</section>
+
+
+ 
+
+
+
+
+<%- include('../../partials/footer.ejs') %>
+<script src="/scripts/bookmark.js"></script>
+<script src="/scripts/likeDislike.js"></script>
+
+</body>
+</head>

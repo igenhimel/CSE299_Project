@@ -1,0 +1,135 @@
+<%- include('../../partials/header.ejs') %>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+
+
+
+<section class="bg-white">
+    <div class="container">
+
+        <h2 class="text-center p-4"><%=title%></h2>
+
+
+        <% for(let postfollow of follow){ %>
+
+        <div class="row d-lg-flex justify-content-lg-center align-items-lg-center">
+            <%for(let post of postfollow.posts.reverse()){%>
+            <div class="col col-lg-7">
+                <div class="card mb-3 rounded postCard">
+                    <div class="card-body">
+
+                    
+                            <span class="bookmark" data-post="<%= post._id %> ">
+                          
+                              <% if (profile.bookmarks.includes(post._id)) { %>
+                         
+                               <i class="fas fa-bookmark text-primary"></i>
+                            
+                              <% } else{%>
+                               <i class="far fa-bookmark"></i>
+                              
+                               <% } %> 
+                             </span>
+                          
+                            
+                      
+
+
+                        <img src="<%= postfollow.profilePic %> " alt="profile_pic"
+                            class=" img-fluid img-thumbnail rounded-circle mt-4 mb-3 imguser" width="70px">
+                        <span class="font-weight-bold text-secondary"><%if(user){%>
+                            <a href="/author/<%=postfollow.user %>"><%= postfollow.name %> </a>
+                            <%}else{%>
+                            <%=postfollow.name %>
+                            <%}%>
+                                  
+                            </span>
+                            <div class="postUser">
+                                <small><%= moment(post.createdAt) %> <i class="fas fa-circle"></i> <%= post.readTime %>
+                            </small>
+
+                    </div>
+
+                    <a href="/explore/<%= post._id %> " class=" text-decoration-none">
+                        <h4 class="font-weight-bolder card-title text-muted"><%= post.title %> </h4>
+                        <p class="text-dark"><%= truncate(post.body) %> </p>
+
+                        <% if (post.thumbnail) { %>
+                        <img src="<%= post.thumbnail %> " alt="" class=" card-img-top">
+                        <% } %>
+                    </a>
+                </div>
+                <% if (isLoggedIn) { %>
+
+                <div class="card-footer bg-white" id="like">
+
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn w-100 likebtn" id="likebtn<%=post._id%> " data-post="<%= post._id %> "><i
+                                    class="fas fa-thumbs-up <% if (post.likes.includes(user._id)) { %>
+                                      text-primary
+                              <% } %> "></i>
+                                <%= post.likes.length %>
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button class="btn w-100 dislikebtn" id="dislikebtn<%=post._id%> "
+                                data-post="<%= post._id %> "><i class="fas fa-thumbs-down <% if (post.dislikes.includes(user._id)) { %>
+                                  text-primary
+                          <% } %> "></i>
+                                <%= post.dislikes.length %>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <% }else{ %>
+
+                <div class="card-footer bg-white" id="like">
+
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn w-100  disabled"><i
+                                    class="far fa-thumbs-up"></i><%= post.likes.length %></button>
+                        </div>
+                        <div class="col">
+                            <button class="btn w-100  disabled"><i
+                                    class="far fa-thumbs-down"></i><%= post.dislikes.length %></button>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-center">
+
+                        <p class="text-muted">To Like And Comment Plaese <a href="/auth/login">Login</a></p>
+
+                    </div>
+
+                </div>
+
+                <% } %>
+
+
+
+
+            </div>
+
+
+        </div>
+        <%}%>
+            </div>
+            <%}%>
+
+</section>
+
+
+
+
+
+
+
+<%- include('../../partials/footer.ejs') %>
+<script src="/scripts/bookmark.js"></script>
+<script src="/scripts/likeDislike.js"></script>
+
+</body>
+</head>

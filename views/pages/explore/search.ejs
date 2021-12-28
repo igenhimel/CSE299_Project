@@ -1,0 +1,85 @@
+<%- include('../../partials/header.ejs') %>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+
+
+
+
+
+<section class="bg-white container py-3 mt-3">
+
+    <h5 class="text-center text-dark py-3">Search Result For <%= searchTerm %> </h5>
+
+    <% if (posts.length==0) { %>
+     
+        <div class="card">
+
+            <div class="card-body">
+                <h1 class="lead font-weight-bold text-warning text-center">Nothing Found</h1>
+            </div>
+
+        </div>
+
+
+    <% }else{ %>
+
+      <% for(let post of posts){ %>
+
+        <div class="row">
+            <div class="col d-flex flex-row justify-content-center align-items-center">
+                <div class="card mt-3 w-50 searchwidth">
+
+                    <div class="card-header">
+                        <a href="/explore/<%=post._id%> "><%= post.title %> </a>
+                    </div>
+                    <img src="<%= post.thumbnail?post.thumbnail:'' %> " alt="" class="img-fluid">
+                    <div class="card-body text-center">
+                        <%= truncate(post.body) %> 
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+        
+        <% } %> 
+         
+     <% } %>
+
+<% if (totalPage>1) { %>
+    <nav class="py-3" id='page'>
+        <ul class="pagination justify-content-center">
+    
+          <li class="page-item prev <%= currentPage==1?'disabled':'' %> ">
+            <a class="page-link <%= currentPage==1?'text-muted':'text-dark' %> " href="/search?<%=`term=${searchTerm}&page=${currentPage-1}` %> ">Previous</a>
+          </li>
+    
+          <% for(let i=1;i<=totalPage;i++){ %> 
+    
+            <li class="page-item item <%= currentPage==i?'active':'' %>  "><a class=" page-link" href="/search?<%=`term=${searchTerm}&page=${i}`%>"><%= i %>
+            
+            </a></li>
+    
+    
+            <% } %> 
+    
+          <li class="page-item read-next <%= currentPage==totalPage?'disabled':'' %> ">
+            <a class="page-link <%= currentPage==totalPage?'text-muted':'text-dark' %>" href="/search?<%= `term=${searchTerm}&page=${currentPage+1}`%>">Read Next</a>
+          </li>
+    
+        </ul>
+      </nav>
+<% } %>
+
+</section>
+
+
+ 
+
+
+
+
+<%- include('../../partials/footer.ejs') %>
+
+
+</body>
+</head>

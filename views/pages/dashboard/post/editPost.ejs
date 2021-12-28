@@ -1,0 +1,128 @@
+<%- include('../../../partials/header.ejs') %>
+
+
+  
+    <div class="container text-center">
+
+      <h1 class="text-dark display-4 mt-4"><%= head %> </h1>
+       
+         <div class="d-flex flex-row justify-content-center mt-3">    
+      
+        <img src="<%= user.profilePic %> " alt="profilePic" class=" img-thumbnail img-fluid rounded-circle mr-3" width="100px" id="propicPost">
+          
+        <input type="text" name=""  class="form-control mt-5 w-50 py-4" placeholder="Edit Your Post <%= user.username %> ..." id="openPost">
+        
+         </div>
+       </div>
+
+    </div>
+
+    <div class="modal fade" id="postModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-secondary">
+                     <h2 class="text-light lead">Edit Your Post</h2>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-crop">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+
+                <div class="modal-body bg-light" id="modalbody">
+
+                    <form action="/posts/edit/<%= post._id %> " method="POST" enctype="multipart/form-data">
+                    
+                       <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title" class="form-control <%= error.title?'is-invalid':'' %> " placeholder="Your Post Title"value="<%=post.title?post.title:''%>">
+                        <div class="invalid-feedback">
+
+                            <%= error.title %> 
+    
+                           </div>
+                       </div>
+                      
+
+                       <div class="form-group">
+                        <label for="body">Body</label>
+                        <textarea name="body" id="tiny-mce-body" cols="30" rows="10" class="form-control <%= error.body?'is-invalid':'' %> " placeholder="Write Something"><%=post.body?post.body:''%></textarea>
+                        <div class="invalid-feedback">
+
+                            <%= error.body%> 
+    
+                           </div>
+                       </div>
+
+                       <div class="form-group">
+                           <label for="tags">Tags</label>
+                           <input type="text" name="tags" id="tags" class="form-control <%= error.tags?'is-invalid':'' %>" placeholder="tag1,tag2,tag3"value="<%=post.tags.length>0?post.tags.join(','):''%>">
+
+                           <div class="invalid-feedback">
+
+                            <%= error.tags%> 
+    
+                           </div>
+
+                       </div>
+                       <% if (post.thumbnail) { %>
+                        <label>Thumbnail</label>
+                        <img src="<%=post.thumbnail %> " alt="thumbnail" class=" img-fluid mb-4">
+                          
+                       <% } %>
+
+                       <div class="input-group">
+                           <div class=" input-group-prepend">
+                                 <span class=" input-group-text">Upload</span>
+                           </div>
+
+                           <div class=" custom-file">
+                               <input type="file" name="thumbnail" id="inputGroupFile" class="custom-file-input">
+                               <label for="inputGroupFile" class=" custom-file-label">Choose File</label>
+
+                           </div>
+
+                         
+                           
+                         
+
+                       </div>
+                       <input type="submit" value="Update" class="btn btn-outline-success mt-3" id="frmSendMessage">
+                       <a class="btn btn-outline-danger mt-3" href="/posts/delete/<%= post._id %> ">Delete</a>
+                    
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<%- include('../../../partials/footer.ejs') %>
+
+
+<script src="https://cdn.tiny.cloud/1/3b7wpyh8xo782nz8abkwcxm1rpbs4fwszc0ouf1tyqvi1ijv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="/scripts/tinymce.js"></script>
+<script>
+
+$('#postModal').modal('show')    
+
+$('#openPost').on('click',function(){
+    $('#postModal').modal('show')
+})
+
+$('#inputGroupFile').on('change',function(e){
+    let filename = e.target.files[0].name
+    $(this).next('.custom-file-label').html(filename)
+
+})
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

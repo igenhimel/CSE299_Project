@@ -55,22 +55,18 @@
                                         </div>
                                     </div>
                                  </div>
-
-                               
-                               
-
-
-                                
                                  <input type="submit" class="btn btn-outline-primary" value="Log In">
-                            
-                            
                             </form>
 
-                           
-
                          </div>
-                       
                 </div>
+
+                <%if(ErrorPass.password || error.email){%>
+                                   
+                    <a href="/auth/forgotPassword" class=" ml-3 btn-secondary btn text-decoration-none">Forgot Password</a>
+
+                    <%}%>
+
                 <br>
                 <a href="/auth/google" class="btn btn-dark shadow" id="googleId" name="googleId"> <img src="/images/kissclipart-google-logo-clipart-google-logo-fca15cfbeaa70b32.png" alt="default" class=" img-fluid img-thumbnail" width="25px" > Sign In With Google</a>
             </div>
@@ -78,6 +74,8 @@
         </div>
       </div>
   </div>
+
+
 
 <%- include('../../partials/footer.ejs') %>
 

@@ -1,0 +1,88 @@
+<%- include('../../partials/header.ejs') %>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+
+
+
+
+
+<section class="bg-white">
+    <div class="container">    
+
+        <%if(posts.length==0){%>
+
+            <h2 class="text-center p-4">You don't have bookmarks any post</h2>
+       
+    <% }else{ %>
+        <h2 class="text-center p-4"><%=title %></h2>
+        
+        <% for(let post of posts){ %>
+            
+            <div class="row d-lg-flex justify-content-lg-center align-items-lg-center">
+                <div class="col col-lg-7">
+                    <div class="card mb-3 rounded postCard">
+
+                    
+                        
+                        <div class="card-body">
+                            
+                          
+                          <% if (user) { %>
+
+                           
+                            <span class="bookmark" data-post="<%= post._id %> ">
+                          
+                              <% if (bookmarks.includes(post._id)) { %>
+                         
+                               <i class="fas fa-bookmark text-primary"></i>
+                            
+                              <% } else{%>
+                               <i class="far fa-bookmark"></i>
+                              
+                               <% } %> 
+                             </span>
+                          
+                            
+                           <% } %>
+
+
+                            <a href="/explore/<%= post._id %> " class=" text-decoration-none">
+                            <h4 class="font-weight-bolder card-title text-muted"><%= post.title %> </h4>
+                            <p class="text-dark"><%= truncate(post.body) %> </p>
+                           
+                            <% if (post.thumbnail) { %>
+                                <img src="<%= post.thumbnail %> " alt="" class=" card-img-top">
+                               <% } %>
+                           </a>
+                        </div>
+                       
+                  
+
+                    </div>
+
+                </div>
+            </div>
+            
+
+          
+            
+            
+            <% } %> 
+    <% } %>
+</div>
+
+
+
+</section>
+
+
+ 
+
+
+
+
+<%- include('../../partials/footer.ejs') %>
+<script src="/scripts/bookmark.js"></script>
+
+</body>
+</head>
