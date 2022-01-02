@@ -246,47 +246,11 @@ exports.forgotPasswordGet =async (req,res,next)=>{
 
     next(e)
 
-  }
-  
-
-}
-
-exports.forgotPasswordGet =async (req,res,next)=>{
- 
-  let{email}=req.body
-
-  try{
-    let user = await User.findOne({
-      email:email
-    })
-
-    console.log(user)
-  
-    if(user){
-      req.flash('success','You are a verified User!')
-      res.render('pages/auth/forgotPass',{
-      title:'Forgot Password',
-      path:{},
-      flashMessage:Flash.getMessage(req),
-      user
-      })
-  
-    }
-    else{
-      req.flash('fail','You are not a verified User!')
-      res.redirect('/auth/verifyEmail')
-    }
-
-  }
-  catch(e){
-
-    next(e)
 
   }
   
 
 }
-
 exports.forgotPasswordPost = async(req,res,next)=>{
   let {password,cpassword,getEmail} =req.body
 
@@ -318,5 +282,15 @@ catch(e){
     console.log(e)
     next(e)
 }
+
+}
+
+exports.changePasswordGet =(req,res,next)=>{
+ 
+  res.render('pages/auth/changePassword',{
+    title:'Change Password',
+    path:{},
+    flashMessage:Flash.getMessage(req)
+  })
 
 }
