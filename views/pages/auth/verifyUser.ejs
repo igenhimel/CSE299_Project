@@ -1,13 +1,16 @@
 
 <%- include('../../partials/header.ejs') %>
-<div class="row">
-    <div class="col">
-        <form action="/auth/verifyEmail" method="POST">
-          
-            <label for="email">Enter Your Email</label>
-            <input type="email" name="email" id="email" class=" form-inline">
-            <button class="btn btn-primary">Verify User</button>
-            </form>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form action="/auth/verifyEmail" method="POST">
+              
+                <label for="email">Enter Your Email</label>
+                <input type="email" name="email" id="email" class=" form-inline">
+                <br>
+                <button class="btn btn-primary">Verify User</button>
+                </form>
+        </div>
     </div>
 </div>
 <%- include('../../partials/footer.ejs') %>
