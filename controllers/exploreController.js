@@ -5,6 +5,12 @@ const Profile = require('../models/Profile')
 const { post } = require('jquery')
 
 
+/**
+ * Extract date and time from genDate()
+ * @param {integer} days - take integer input number as days 
+ * @returns subtract recent day to given paramater days and shows the difference
+ **/
+
 function genDate(days){
 
      let date = moment().subtract(days,'days')
@@ -12,6 +18,12 @@ function genDate(days){
      return date.toDate()
 
 }
+
+/**
+ * filtering post which posted in a week,month or recents
+ * @param {string} filter - take a string input as 'week','recent','months'
+ * @returns subtract recent day to given paramater days and shows the difference and provide 1 week,months ago post
+ */
 
 function filteringData(filter){
     let filterObj = {}
@@ -44,6 +56,13 @@ function filteringData(filter){
         order
     }
 }
+
+/**
+ * API Method for view all post
+ * @param {object} req -request object of the exploreController method of exploreController
+ * @param {obejct} res -rsponse object of the exploreController method of exploreController
+ * @param {object} next -next object of the exploreController method of exploreController
+ */
 
 exports.exploreController = async (req,res,next)=>{
 

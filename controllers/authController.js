@@ -18,7 +18,12 @@ exports.realTimeValidation = (req, res, next) => {
     })
 }
 
-
+/**
+ * api method for viewing the signup page-
+ * @param {object} req request object of the signUpGetController method of authController
+ * @param {object} res response object of the signUpGetController method of authController
+ * @param {object} next next object of the signUpGetController method of authController
+ */
 exports.signUpGetController = (req, res, next) => {
 
 
@@ -34,6 +39,13 @@ exports.signUpGetController = (req, res, next) => {
 
 }
 
+
+/**
+ * api method for register new account-
+ * @param {object} req request object of the signUpPostController method of authController
+ * @param {object} res response object of the signUpPostController method of authController
+ * @param {object} next next object of the signUpPostController method of authController
+ */
 
 
 exports.signUpPostController = async (req, res, next) => {
