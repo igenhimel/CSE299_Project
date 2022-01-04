@@ -209,7 +209,7 @@ exports.myHome = async(req,res,next)=>{
         let follows = profile.follow
 
         res.render('pages/explore/myHome',{
-            title:'My Timeline',
+            title:'My Home',
             flashMessage: Flash.getMessage(req),
             path:'home',
             follow:profile.follow,
