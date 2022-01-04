@@ -1,12 +1,14 @@
 
 <%- include('../../partials/header.ejs') %>
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <form action="/auth/verifyEmail" method="POST">
+    <div class="row mx-auto">
+        <div class="col-12 text-center">
+            <form action="/auth/verifyEmail" method="POST" class=" form">
               
-                <label for="email">Enter Your Email</label>
-                <input type="email" name="email" id="email" class=" form-inline">
+                <label for="email" class="mt-5 form-label lead">Enter Your Email</label>
+        
+                    <input type="email" name="email" id="email" class=" form-control w-25 mx-auto">
+             
                 <br>
                 <button class="btn btn-primary">Verify User</button>
                 </form>

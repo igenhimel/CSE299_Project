@@ -12,7 +12,8 @@ const {
     verifyEmailGet,
     forgotPasswordGet,
     forgotPasswordPost,
-    changePasswordGet
+    changePasswordGet,
+    changePasswordPost
 
 } = require('../controllers/authController')
 
@@ -37,6 +38,7 @@ authRoute.get('/login',isUnAuthenticated,loginGetController)
 authRoute.post('/login',isUnAuthenticated,loginvalidator,loginPostController)
 
 authRoute.get('/changePass',isAuthenticated,changePasswordGet)
+authRoute.post('/changePass',isAuthenticated,changePasswordPost)
 
 authRoute.get('/logout',logoutController)
 
