@@ -13,6 +13,10 @@
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px; }
 
+  .fontLink{
+    font-size: 25px;
+  }
+
 #signup {
   min-height: 600px;
   position: relative; }

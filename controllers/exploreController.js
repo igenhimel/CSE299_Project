@@ -213,7 +213,8 @@ exports.myHome = async(req,res,next)=>{
             flashMessage: Flash.getMessage(req),
             path:'home',
             follow:profile.follow,
-            profile
+            profile,
+            totalFollower:follows.length
         })
 
     }
